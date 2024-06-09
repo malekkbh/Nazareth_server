@@ -2,10 +2,12 @@ const express = require("express");
 var cors = require("cors");
 const mongoose = require("mongoose");
 const USER_MODEL = require("./API/Models/user.model");
-// const Routs = require("./api/routes/Router");
+const Routes = require("./API/Routes/Routes");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use('/' , Routes)
 
 const mongooseURL =
   "mongodb+srv://malekkbh:123456780@cluster0.vihc5td.mongodb.net/";
@@ -40,21 +42,6 @@ app.post("/whatMyName", (req, res) => {
   });
 });
 
-app.post("/createNewUser", (req, res) => {
-  const { name, phone, points } = req.body;
-
-  USER_MODEL.create({
-    name: name,
-    phone: phone,
-    points: points,
-  })
-    .then((createRes) => {
-      res.status(200).json({ user: createRes._doc });
-    })
-    .catch((e) =>
-      res.status(500).json({ error: true, errorMessage: e.message })
-    );
-});
 
 app.get("/getAllUsers", async (req, res) => {
   try {
@@ -64,5 +51,7 @@ app.get("/getAllUsers", async (req, res) => {
     res.status(500).json({ error: true, errorMessage: e.message });
   }
 });
+
+// router.method('/route' , controller)
 
 module.exports = app;
