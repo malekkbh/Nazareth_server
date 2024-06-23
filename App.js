@@ -45,7 +45,7 @@ app.post("/whatMyName", (req, res) => {
 
 app.get("/getAllUsers", async (req, res) => {
   try {
-    const users = await USER_MODEL.find({name:'malek'});
+    const users = await USER_MODEL.find();
     res.status(200).json(users);
   } catch (e) {
     res.status(500).json({ error: true, errorMessage: e.message });
