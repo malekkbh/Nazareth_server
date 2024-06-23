@@ -20,8 +20,8 @@ mongoose.connection.on("connected", () => {
 
 app.get("/app", (req, res) => {
   res.status(200).json({
-    name: "Geahad",
-    city: "Nazareth",
+    name: "Aihab",
+    city: "Bartaa",
   });
 });
 
